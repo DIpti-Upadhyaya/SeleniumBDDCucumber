@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 
 public class DriverManager {
 
-    public static WebDriver driver
+    public static WebDriver driver;
     String browser = "chrome";
     String baseURL = "https://demo.nopcommerce.com/";
 
@@ -55,7 +55,7 @@ public class DriverManager {
     }
 
     public  void applyImplicitwait() {
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
     public void closeBrowser(){

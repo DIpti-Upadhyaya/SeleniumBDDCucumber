@@ -8,9 +8,8 @@ import org.junit.runner.RunWith;
 @CucumberOptions(features = "src/test/resources",
         dryRun = false,
         strict = true,
-        tags = "login",
-        plugin = "json:target/cucumber-report/cucumber.json",
-)
+        tags = "@login",
+        plugin = "json:target/cucumber-report/cucumber.json")
 public class RunCukesTest {
     // a json report is generated as target/cucumber-report
     //open maven tab and click 'execute maven goal'

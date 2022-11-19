@@ -6,17 +6,18 @@ import org.example.driver.DriverManager;
 
 public class Hooks {
 
-   DriverManager driverManager=new DriverManager();
-    @Before
-  public void setup() throws IllegalAccessException {
-driverManager.runOnLocalBrowser();
-driverManager.goToURL();
-driverManager.maxBrowser();
-driverManager.applyImplicitwait();
-  }
+    DriverManager driverManager = new DriverManager();
 
-  @After
-  public void tearDown(){
-driverManager.closeBrowser();
-  }
+    @Before
+    public void setup() throws IllegalAccessException {
+        driverManager.runOnLocalBrowser();
+        driverManager.goToURL();
+        driverManager.maxBrowser();
+        driverManager.applyImplicitwait();
+    }
+
+    @After
+    public void tearDown() {
+        driverManager.closeBrowser();
+    }
 }
