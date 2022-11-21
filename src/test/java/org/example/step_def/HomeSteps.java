@@ -17,7 +17,7 @@ public class HomeSteps extends DriverManager {
     // @Given("^I am on the homepage$")
     //  public void i_am_on_the_homepage() throws Throwable {
     @Given("^I am on the home page$")
-    public void iAmOnTheHomePage() {
+    public void iAmOnTheHomePage(){
         String actualURL = getURL();
         System.out.println(actualURL);
         assertThat(actualURL, is(endsWith("nopcommerce.com/")));
@@ -34,8 +34,11 @@ public class HomeSteps extends DriverManager {
 
     @When("^I click on Login button$")
     public void i_click_on_Login_button() throws Throwable {
-        homePage.clickOnLoginButtonHomePage();
+       homePage.clickOnLoginButtonHomePage();
     }
 
-
+    @Given("^I click on Register button$")
+    public void i_click_on_Register_button() throws Throwable {
+        homePage.clickOnRegisterButton();
+    }
 }

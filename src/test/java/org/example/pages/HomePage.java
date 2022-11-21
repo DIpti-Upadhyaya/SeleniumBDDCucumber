@@ -12,14 +12,18 @@ public class HomePage extends DriverManager {
 
     @FindBy(css = ".ico-login")
     WebElement loginButtonOnHomePage;
+    @FindBy(css = ".ico-register")
+    WebElement registerButton;
+
+    public void clickOnRegisterButton() {
+        registerButton.click();
+    }
 
     public String getTextFromHomePage() {
         return textOnHomePage.getText();
     }
     public void clickOnLoginButtonHomePage() {
-        loginButtonOnHomePage.click();
-        }
-
+    loginButtonOnHomePage.click();
     }
-
+}
 

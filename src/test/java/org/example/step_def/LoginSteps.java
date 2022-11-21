@@ -19,16 +19,11 @@ public class LoginSteps extends DriverManager {
     public void i_should_see_is_visible(String expectedWelcomeText) throws Throwable {
         String actulWelcomeText = loginPage.getWelcomeTextFromLoginPage();
         assertThat(actulWelcomeText, is(equalToIgnoringCase(expectedWelcomeText)));
-
     }
 
     @And("^I should see text \"([^\"]*)\" in URL$")
-    public void iShouldSeeTextInURL(String expectedURLText) throws Throwable {
-        String actualURL = getURL();
-        System.out.println(actualURL);
-        assertThat(actualURL, containsString(expectedURLText));
 
-    }
+
 
     @When("^I Enter Valid email \"([^\"]*)\"$")
     public void i_Enter_Valid_email(String email) throws Throwable {

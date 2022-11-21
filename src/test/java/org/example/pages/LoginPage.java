@@ -16,10 +16,10 @@ public class LoginPage extends DriverManager {
     @FindBy(id="Password")
     WebElement passwordInputField;
 
-    @FindBy(css = ".login-button")
-    WebElement loginbuttonOnLoginPage;
+    @FindBy(xpath = "//button[@class='button-1 login-button']")
+    WebElement loginButtonOnLoginPage;
 
-    @FindBy(css = ".ico-logout")
+    @FindBy(xpath = "//a[@class='ico-logout']")
     WebElement logoutButton;
 
     public String getWelcomeTextFromLoginPage(){
@@ -35,10 +35,8 @@ public class LoginPage extends DriverManager {
     }
 
     public void clickOnLoginButtonOnLoginPage(){
-        loginbuttonOnLoginPage.click();
+        loginButtonOnLoginPage.click();
     }
 
-    public boolean logoutButtonDisplayed(){
-        return logoutButton.isDisplayed();
-    }
+    public boolean logoutButtonDisplayed(){return logoutButton.isDisplayed();}
 }

@@ -2,13 +2,13 @@ Feature: Registration Page
   As a new customer
   I want to register
 
-  @register
-    Scenario: Valid Registration with Valid Data
+  @registration
+    Scenario: Valid Registration with Valid Data for mandatory field
     Given I am on the home page
     And I click on Register button
-    When I enter Firstname "ABC"
+    When I enter Firstname "ABCD"
     And I enter Lastname "XYZ"
-    And I enter valid email on register page "dipu@google.com"
+    And I enter valid email on register page "xyz1@yahoo.com"
     And I enter password on ragister page "123ABC"
     And I enter confirm password "123ABC"
     And I click on register button on registeration page
