@@ -44,7 +44,7 @@ public class RegistrationPage extends DriverManager {
     }
 
     public void enterPassword(String passwordOnRegisterPage) {
-        inputEmailOnRegisterPage.sendKeys(passwordOnRegisterPage);
+        inputPasswordOnRegisterPage.sendKeys(passwordOnRegisterPage);
     }
 
     public void enterConfirmPassword(String confirmPassword) {

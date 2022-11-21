@@ -7,6 +7,7 @@ import cucumber.api.java.en.When;
 import org.example.driver.DriverManager;
 import org.example.pages.LoginPage;
 
+import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
@@ -20,10 +21,6 @@ public class LoginSteps extends DriverManager {
         String actulWelcomeText = loginPage.getWelcomeTextFromLoginPage();
         assertThat(actulWelcomeText, is(equalToIgnoringCase(expectedWelcomeText)));
     }
-
-    @And("^I should see text \"([^\"]*)\" in URL$")
-
-
 
     @When("^I Enter Valid email \"([^\"]*)\"$")
     public void i_Enter_Valid_email(String email) throws Throwable {
@@ -44,6 +41,12 @@ public class LoginSteps extends DriverManager {
     public void i_should_see_logout_button_displayed() throws Throwable {
         boolean logoutButtonIsDisplayed = loginPage.logoutButtonDisplayed();
         assertThat(logoutButtonIsDisplayed, is(true));
+    }
+
+    @And("^I should see text \"([^\"]*)\" in URL$")
+    public void iShouldSeeTextInURL(String actualURL) throws Throwable {
+
+        assertThat(actualURL, is(endsWith("/login")));
     }
 }
 

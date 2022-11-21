@@ -4,6 +4,7 @@ Feature: Login Feature
   I want to login
   to check the login functionality
 
+
   Scenario:Validate Login Page
     Given I am on the home page
     When I click on Login button
@@ -13,13 +14,9 @@ Feature: Login Feature
   Scenario: Login with Valid credential
     Given I am on the home page
     When I click on Login button
-    And I Enter Valid email "dipu@google.com"
+    And I Enter Valid email "abc2@yahoo.com"
     And I Enter Valid Password "123ABC"
     And I click on Login button on Login page
     Then I should see logout button displayed
 
-    Scenario: Validate my account detail after Login
 
-   Scenario: Login with invalid credential
-
-     Scenario: Login

@@ -10,7 +10,7 @@ public class LoginPage extends DriverManager {
     @FindBy(css = ".page-title")
     WebElement welcomeTextOnLoginPage;
 
-    @FindBy(id="Email")
+    @FindBy(xpath="//input[@data-val-required='Please enter your email']")
     WebElement emailInputField;
 
     @FindBy(id="Password")
