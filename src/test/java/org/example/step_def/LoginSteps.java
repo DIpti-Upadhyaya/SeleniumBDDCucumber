@@ -48,6 +48,30 @@ public class LoginSteps extends DriverManager {
 
         assertThat(actualURL, is(endsWith("/login")));
     }
+
+    @When("^I enter invalid email \"([^\"]*)\"$")
+    public void i_enter_invalid_email(String invalidEmail) throws Throwable {
+        loginPage.enterInvalidEmail(invalidEmail);
+    }
+
+    @When("^I click on password input field$")
+    public void i_click_on_password_input_field() throws Throwable {
+        loginPage.clickOnPasswordField();
+    }
+
+    @Then("^I should see \"([^\"]*)\" text displayed$")
+    public void i_should_see_text_displayed(String expectedErrorMessage) throws Throwable {
+        String errorMessageDisplay = loginPage.wrongEmailDisplayed();
+        assertThat(errorMessageDisplay, is(equalToIgnoringCase(expectedErrorMessage)));
+    }
+
+    @When("^I enter nullvalue in email \"([^\"]*)\"$")
+    public void i_enter_nullvalue_in_email(String nullEmail) throws Throwable {
+        loginPage.enterNullEmail(nullEmail);
+    }
+
+    @When("^I enter nullvalue in password \"([^\"]*)\"$")
+    public void i_enter_nullvalue_in_password(String nullPassword) throws Throwable {
+       loginPage.enterNullPassword(nullPassword);
+    }
 }
-
-

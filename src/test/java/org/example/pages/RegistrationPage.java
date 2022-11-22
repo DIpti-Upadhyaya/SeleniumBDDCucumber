@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 
 public class RegistrationPage extends DriverManager {
 
-
     @FindBy(xpath = "//input[@data-val-required='First name is required.']")
     WebElement inputFirstname;
 
@@ -30,6 +29,9 @@ public class RegistrationPage extends DriverManager {
 
     @FindBy(xpath = "//a[@href='/logout']")
     WebElement logoutButtonDisplayed;
+
+    @FindBy(xpath = "//a[@class='ico-account']")
+    WebElement myAccountButton;
 
     public void enterFirstname(String firstname) {
         inputFirstname.sendKeys(firstname);
@@ -55,14 +57,13 @@ public class RegistrationPage extends DriverManager {
         registerButtonOnRegister.click();
     }
 
-    public String getRegisterMessageDisplayed(){
+    public String getRegisterMessageDisplayed() {
         return registerMessageDisplayed.getText();
     }
 
-    public String getLogoutButtonDisplayed(){
-        return logoutButtonDisplayed.getText();
+    public String myAccountButtonDisplayed() {
+        return myAccountButton.getText();
     }
-
 }
 
 

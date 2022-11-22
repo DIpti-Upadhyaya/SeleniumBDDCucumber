@@ -58,16 +58,10 @@ public class RegistrationSteps extends DriverManager {
         assertThat(actualURL1, is(endsWith("/registerresult")));
     }
 
+    @Then("^I should see my account \"([^\"]*)\" button displayed$")
+    public void i_should_see_my_account_button_displayed(String expectedMyAccount) throws Throwable {
+        String myAccountButton = registrationPage.myAccountButtonDisplayed();
+        assertThat(myAccountButton, is(equalToIgnoringCase(expectedMyAccount)));
+    }
 
-    /*@Then("^I should see logout button displayed$")
-    public void i_should_see_logout_button_displayed(String logoutButtonDisplayed) throws Throwable {
-        String actulButton = registrationPage.getLogoutButtonDisplayed();
-        assertThat(actulButton, is(equalToIgnoringCase(logoutButtonDisplayed)));
-    }*/
-     /*@And("^I should see text \"([^\"]*)\" in URL$")
-    public void iShouldSeeTextInRegisterURL(String expectedURLText) throws Throwable {
-        String actualURL1 = getURL();
-        System.out.println(actualURL1);
-        assertThat(actualURL1, containsString(expectedURLText));
-    }*/
    }
