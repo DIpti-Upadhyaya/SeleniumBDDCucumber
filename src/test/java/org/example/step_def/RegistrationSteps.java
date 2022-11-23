@@ -54,8 +54,9 @@ public class RegistrationSteps extends DriverManager {
         }
 
     @And("^I should find text \"([^\"]*)\" in URL$")
-    public void iShouldFindTextInURL(String actualURL1) throws Throwable {
-        assertThat(actualURL1, is(endsWith("/registerresult")));
+    public void iShouldFindTextInURL(String expectedURL1) throws Throwable {
+        String actualURL= getURL();
+        assertThat(actualURL, is(containsString(expectedURL1)));
     }
 
     @Then("^I should see my account \"([^\"]*)\" button displayed$")

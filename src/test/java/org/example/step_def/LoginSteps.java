@@ -44,9 +44,9 @@ public class LoginSteps extends DriverManager {
     }
 
     @And("^I should see text \"([^\"]*)\" in URL$")
-    public void iShouldSeeTextInURL(String actualURL) throws Throwable {
-
-        assertThat(actualURL, is(endsWith("/login")));
+    public void iShouldSeeTextInURL(String expectedURL) throws Throwable {
+        String actualURL= getURL();
+        assertThat(actualURL, is(containsString(expectedURL )));
     }
 
     @When("^I enter invalid email \"([^\"]*)\"$")
