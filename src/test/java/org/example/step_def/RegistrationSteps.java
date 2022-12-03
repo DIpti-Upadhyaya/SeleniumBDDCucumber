@@ -1,5 +1,6 @@
 package org.example.step_def;
 
+import cucumber.api.DataTable;
 import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Then;
@@ -7,6 +8,9 @@ import cucumber.api.java.en.When;
 import org.example.driver.DriverManager;
 import org.example.pages.RegistrationPage;
 import org.openqa.selenium.support.FindBy;
+
+import java.util.List;
+import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.endsWith;
 import static org.hamcrest.CoreMatchers.is;
@@ -44,18 +48,18 @@ public class RegistrationSteps extends DriverManager {
     }
 
     @And("^I click on register button on registration page$")
-        public void i_click_on_register_button_on_registeration_page () throws Throwable {
-            registrationPage.clickRegisterButtonOnRegister();
-        }
+    public void i_click_on_register_button_on_registeration_page() throws Throwable {
+        registrationPage.clickRegisterButtonOnRegister();
+    }
 
     @And("^I enter confirmpassword \"([^\"]*)\"$")
     public void iEnterConfirmpassword(String confirmPassword) throws Throwable {
-            registrationPage.enterConfirmPassword(confirmPassword);
-        }
+        registrationPage.enterConfirmPassword(confirmPassword);
+    }
 
     @And("^I should find text \"([^\"]*)\" in URL$")
     public void iShouldFindTextInURL(String expectedURL1) throws Throwable {
-        String actualURL= getURL();
+        String actualURL = getURL();
         assertThat(actualURL, is(containsString(expectedURL1)));
     }
 
@@ -65,4 +69,18 @@ public class RegistrationSteps extends DriverManager {
         assertThat(myAccountButton, is(equalToIgnoringCase(expectedMyAccount)));
     }
 
-   }
+    @When("^I enter following Data for registration$")
+    public void i_enter_following_Data_for_registration(DataTable dataTable) throws Throwable {
+        List<Map<String, String>> data = dataTable.asMaps(String.class, String.class);
+        System.out.println(data);
+        System.out.println(dataTable);
+        registrationPage.enterRegistrationDetail(
+                data.get(0).get("FirstName"),
+                data.get(0).get("LastName"),
+                data.get(0).get("Email"),
+                data.get(0).get("Password"),
+                data.get(0).get("ConfirmPassword")
+        );
+    }
+
+}

@@ -25,11 +25,13 @@ public class LoginSteps extends DriverManager {
     @When("^I Enter Valid email \"([^\"]*)\"$")
     public void i_Enter_Valid_email(String email) throws Throwable {
         loginPage.enterEmail(email);
+        System.out.println(email);
     }
 
     @When("^I Enter Valid Password \"([^\"]*)\"$")
     public void i_Enter_Valid_Password(String password) throws Throwable {
         loginPage.enterPassword(password);
+        System.out.println(password);
     }
 
     @When("^I click on Login button on Login page$")
