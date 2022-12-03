@@ -5,8 +5,12 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -50,6 +54,32 @@ public class DriverManager {
         }
     }
 
+    public void runInHeadlessMode() throws IllegalAccessException {
+        switch (browser) {
+            case "chrome":
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions chromeOptions= new ChromeOptions();
+                chromeOptions.setHeadless(true);
+                chromeOptions.addArguments("--window-size=1920,1080");
+                driver = new ChromeDriver(chromeOptions);
+                break;
+            case "edge":
+                WebDriverManager.edgedriver().setup();
+                EdgeOptions edgeOptions = new EdgeOptions();
+                edgeOptions.setCapability("--headless", true);
+                driver= new EdgeDriver(edgeOptions);
+                break;
+            case "firefox":
+                WebDriverManager.firefoxdriver().setup();
+                FirefoxOptions firefoxOptions=new FirefoxOptions();
+                firefoxOptions.setHeadless(true);
+                firefoxOptions.addArguments("--window-size=1920,1080");
+                driver=new FirefoxDriver(firefoxOptions);
+                break;
+            default:
+                throw new IllegalAccessException("Unexpected browser");
+        }
+    }
     public void maxBrowser() {
         driver.manage().window().maximize();
     }
@@ -91,7 +121,7 @@ public class DriverManager {
     public void scrollTo(WebElement element) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
-
+// Take element screen shot is foe selenium 4.0
     public void takeElementscreenshot(WebElement element, String fileName)  {
         File scnFile =element.getScreenshotAs(OutputType.FILE);
         try {
@@ -102,14 +132,16 @@ public class DriverManager {
     }
 
     public void takeScreenshot(Scenario scenario){
-
+        // 106 and 107 takes screenshot and attach in our scenario's output (after execution)
         byte[] screenShot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
         scenario.embed(screenShot, "image/png");
-//take a screen shot
+//take a screen shot passing scenario when scenario fail
         File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
         try {
-            FileUtils.copyFile(scrFile, new File("/Users/khuntn01/Desktop/screanshotTests/Error.jpg"));
+            //FileUtils.copyFile(scrFile, new File("/Users/dipen/Desktop/ScreenShotError/Error"+getRandomString(5)+".jpg"));
+            FileUtils.copyFile(scrFile, new File("/Users/dipen/Desktop/ScreenShotError/Error"+generateRandomNumber()+".jpg"));
+           // System.out.println(getRandomString(10));
         } catch (IOException e) {
 // TODO Auto-generated catch block
             e.printStackTrace();
@@ -132,4 +164,11 @@ public class DriverManager {
         return result.toString();
     }
 
+    public void mouseHoverActions(WebElement mainElement, WebElement subElement ) throws Exception {
+
+        Actions action = new Actions(driver);
+        action.moveToElement(mainElement).perform();
+        Thread.sleep(2000);
+        action.moveToElement(subElement).click().perform();
+    }
 }

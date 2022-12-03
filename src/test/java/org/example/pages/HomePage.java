@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class HomePage extends DriverManager {
+    DriverManager driverManager= new DriverManager();
     //locator sould define in variable
     //action should be define in method
     @FindBy(xpath = "//h2[contains(text(),'Welcome to our store')]")
@@ -14,6 +15,9 @@ public class HomePage extends DriverManager {
     WebElement loginButtonOnHomePage;
     @FindBy(css = ".ico-register")
     WebElement registerButton;
+
+    @FindBy(xpath ="//a[@href= '/contactus']")
+    WebElement contctUs;
 
     public void clickOnRegisterButton() {
         registerButton.click();
@@ -25,5 +29,10 @@ public class HomePage extends DriverManager {
     public void clickOnLoginButtonHomePage() {
     loginButtonOnHomePage.click();
     }
+
+    public void clickOnContactUsButtonHomePage() {
+        scrollTo(contctUs);
+        //driverManager.scrollTo(contctUs);
+        contctUs.click();}
 }
 

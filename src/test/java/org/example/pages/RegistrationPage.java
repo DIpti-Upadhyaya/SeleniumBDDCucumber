@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class RegistrationPage extends DriverManager {
-
+static String myEmail;
     @FindBy(xpath = "//input[@data-val-required='First name is required.']")
     WebElement inputFirstname;
 
@@ -51,8 +51,24 @@ public class RegistrationPage extends DriverManager {
 
     public void enterConfirmPassword(String confirmPassword) {
         inputConfirmPassword.sendKeys(confirmPassword);
+
     }
 
+
+    public void enterRegistrationDetail(String firstname,String lastname, String emailOnRegisterPage, String passwordOnRegisterPage, String confirmPassword){
+        inputFirstname.clear();
+        inputFirstname.sendKeys(firstname);
+        inputLastname.clear();
+        inputLastname.sendKeys(lastname);
+        inputEmailOnRegisterPage.clear();
+        int myRandomNumber= generateRandomNumber();
+        myEmail= myRandomNumber+emailOnRegisterPage;
+        inputEmailOnRegisterPage.sendKeys(myRandomNumber+emailOnRegisterPage);
+        inputPasswordOnRegisterPage.clear();
+        inputPasswordOnRegisterPage.sendKeys(passwordOnRegisterPage);
+        inputConfirmPassword.clear();
+        inputConfirmPassword.sendKeys(confirmPassword);
+    }
     public void clickRegisterButtonOnRegister() {
         registerButtonOnRegister.click();
     }
